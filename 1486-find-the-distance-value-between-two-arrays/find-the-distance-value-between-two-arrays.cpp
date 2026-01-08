@@ -21,9 +21,8 @@ public:
 
             }
             if (!unCount) {
-
-                count++;
                 
+                count++;
             }
         }
         return count;
