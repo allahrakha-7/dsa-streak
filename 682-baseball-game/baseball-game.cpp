@@ -2,48 +2,41 @@ class Solution {
 public:
     int calPoints(vector<string>& operations) {
         
-        stack<int> allScores;
+        vector<int> record;
 
-        int temp;
-        
-        int sumOfAllScores = 0;
+        for (string operation : operations) {
 
-        for (int i = 0; i < operations.size(); i++) {
+            if (operation == "C") {
 
-            if (operations[i] != "C" && operations[i] != "D" && operations[i] != "+") {
-                
-                allScores.push(stoi(operations[i]));
+                record.pop_back();
 
-            } else if (operations[i] == "C" && !allScores.empty()) {
+            } else if (operation == "D") {
 
-                allScores.pop();
+                int lastScore = record.back();
 
-            } else if (operations[i] == "D") {
+                record.push_back(lastScore * 2);
 
-                temp = allScores.top() * 2;
+            } else if (operation == "+") {
 
-                allScores.push(temp);
+                int n = record.size();
 
-            } else if (operations[i] == "+") {
+                int newScore = record[n - 1] + record[n - 2];
 
-                int last = allScores.top();
+                record.push_back(newScore);
 
-                allScores.pop();
+            } else {
 
-                int secondLast = allScores.top();
+                record.push_back(stoi(operation));
 
-                allScores.push(last);
-
-                allScores.push(last + secondLast);
             }
         }
+        int sum = 0;
 
-        while (!allScores.empty()) {
+        for (int score : record) {
 
-            sumOfAllScores += allScores.top();
+            sum += score;
 
-            allScores.pop();
         }
-        return sumOfAllScores;
+        return sum;
     }
 };
