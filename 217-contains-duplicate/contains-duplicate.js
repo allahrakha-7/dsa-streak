@@ -19,4 +19,13 @@ var containsDuplicate = function(nums) {
         }
     }
     return false;
+
+    // let seen = new Set(nums);
+
+    // if (seen.size !== nums.length) {
+
+    //     return true;
+
+    // }
+    // return false;
 };
