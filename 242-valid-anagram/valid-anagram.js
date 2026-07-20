@@ -5,29 +5,32 @@
  */
 var isAnagram = function(s, t) {
     
-    if (s.length !== t.length) {
+    // edge case
+    if (s.length !== t.length) return false;
 
-        return false;
+    // create a new hash map
+    const charCount = new Map();
 
-    }
-
-    const anagramMap = new Map(); 
-    
+    // loop through the string s
     for (let c of s) {
 
-        anagramMap.set(c, (anagramMap.get(c) || 0) + 1);
-        
-    }
+        charCount.set(c, (charCount.get(c) || 0) + 1);
 
+    }
+    // loop through the string t and check
     for (let c of t) {
 
-        if (!anagramMap.get(c) || anagramMap.get(c) === 0) {
+        // check if the character does not exists or dropped to 0     
+        if (!charCount.get(c)) {
 
             return false;
 
-        }
-        anagramMap.set(c, anagramMap.get(c) - 1);
+        } else {
 
+            // else subtract it from the map
+            charCount.set(c, charCount.get(c) - 1);
+
+        }
     }
     return true;
 };
