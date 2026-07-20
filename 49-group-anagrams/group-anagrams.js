@@ -4,18 +4,24 @@
  */
 var groupAnagrams = function(strs) {
 
-    let answer = new Map();
+    // create a hash map
+    const strsMap = new Map();
 
+    // loop through the every string in the strs array
     for (let str of strs) {
 
-        let sortedStr = str.split('').sort().join('');
+        // split the string, sort it and then join it back
+        let sortedKey = str.split('').sort().join('');
 
-        if (!answer.has(sortedStr)) {
+        // check for this sortedKey if not exists in map
+        if (!strsMap.has(sortedKey)) {
 
-            answer.set(sortedStr, []);
+            // add it to the map
+            strsMap.set(sortedKey, []);
 
         }
-        answer.get(sortedStr).push(str);
+        // push the original str to its matching group
+        strsMap.get(sortedKey).push(str);
     }
-    return Array.from(answer.values());
+    return Array.from(strsMap.values());
 };
