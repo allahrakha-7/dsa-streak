@@ -25,12 +25,9 @@ var isAnagram = function(s, t) {
 
             return false;
 
-        } else {
-
-            // else subtract it from the map
-            charCount.set(c, charCount.get(c) - 1);
-
         }
+        // else subtract it from the map
+        charCount.set(c, charCount.get(c) - 1);
     }
     return true;
 };
