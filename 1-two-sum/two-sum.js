@@ -4,36 +4,26 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
+    
+    // edge case
+    if (nums.length < 2) return 0;
 
-    let indicesMap = new Map();
+    // create a indicesMap
+    const indicesMap = new Map();
 
+    // loop through the array
     for (let i = 0; i < nums.length; i++) {
 
+        // calculate difference
         let difference = target - nums[i];
 
+        // check for difference exists in indicesMap, if exists then return the indices pair
         if (indicesMap.has(difference)) {
 
             return [indicesMap.get(difference), i];
-        
+
         }
+        // if not then set it to the indicesMap
         indicesMap.set(nums[i], i);
     }
-    return [];
-
-    // *** Brute Force ***
-    
-    // let indices = [];
-
-    // for (let i = 0; i < nums.length; i++) {
-
-    //     for (let j = i + 1; j < nums.length; j++) {
-
-    //         if (nums[i] + nums[j] === target) {
-
-    //             indices.push(i, j)
-
-    //         }
-    //     }
-    // }
-    // return indices;
 };
