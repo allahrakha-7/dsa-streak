@@ -3,27 +3,27 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    
-    let answer = [];
 
-    let prefix = 1;
+    let result = Array.from(nums.length).fill(1);
+
+    let leftProduct = 1;
 
     for (let i = 0; i < nums.length; i++) {
 
-        answer[i] = prefix;
+        result[i] = leftProduct;
 
-        prefix = prefix * nums[i];
+        leftProduct *= nums[i];
 
     }
-    
-    let suffix = 1;
+
+    let rightProduct = 1;
 
     for (let i = nums.length - 1; i >= 0; i--) {
 
-        answer[i] = answer[i] * suffix;
+        result[i] *= rightProduct;
 
-        suffix = suffix * nums[i];
+        rightProduct *= nums[i];
 
     }
-    return answer;
+    return result;
 };
