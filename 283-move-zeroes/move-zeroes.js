@@ -3,23 +3,25 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
-    
+
+    // edge case
+    if (nums.length === 0 || nums.length === 1) return nums;
+
     let left = 0;
+    
+    for (let right = 0; right < nums.length; right++) {
 
-    for(let i = 0; i < nums.length; i++) {
+        if (nums[right] !== 0) {
 
-        if (nums[i] !== 0) {
+            let temp = nums[right];
 
-            nums[left] = nums[i];
+            nums[right] = nums[left];
+
+            nums[left] = temp;
 
             left++;
 
         }
     }
-
-    for (let i = left; i < nums.length; i++) {
-
-        nums[i] = 0;
-
-    }
+    return nums;
 };
