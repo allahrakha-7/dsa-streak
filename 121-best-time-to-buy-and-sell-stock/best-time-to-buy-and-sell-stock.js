@@ -3,31 +3,29 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    
-    if (prices.length < 2) {
 
-        return 0;
+    // edge case
+    if (prices.length === 1) return 0;
 
-    }
-    let buyTime = 0;
-    let sellTime = 1;
-
+    let minPrice = Infinity;
     let maxProfit = 0;
 
-    while (buyTime < sellTime && sellTime < prices.length) {
+    for (let price of prices) {
 
-        if (prices[sellTime] > prices[buyTime]) {
+        if (price < minPrice) {
 
-            let currentProfit = prices[sellTime] - prices[buyTime];
-
-            maxProfit = Math.max(maxProfit, currentProfit);
+            minPrice = price;
 
         } else {
 
-            buyTime = sellTime;
+            let currentProfit = price - minPrice;
 
+            if (currentProfit > maxProfit) {
+
+                maxProfit = currentProfit;
+
+            }
         }
-        sellTime++;
     }
     return maxProfit;
 };
